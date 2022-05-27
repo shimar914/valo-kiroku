@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="./input.js"></script>
+</head>
+<body>
+    <h3>ゲームモード</h3>
+    <form id="gamemode">
+        <input type="radio" name="gamemode" value="unrated">unrated
+        <input type="radio" name="gamemode" value="competitive">competitive
+    </form>
+
+    <h3>使用キャラ</h3>
+    <p>
+        <select id="agent">
+            <option value="jett">ジェット</option>
+            <option value="raze">レイズ</option>
+            <option value="breach">ブリーチ</option>
+            <option value="omen">オーメン</option>
+            <option value="brim">ブリムストーン</option>
+            <option value="phoenix">フェニックス</option>
+            <option value="sage">セージ</option>
+            <option value="sova">ソーヴァ</option>
+            <option value="viper">ヴァイパー</option>
+            <option value="cypher">サイファー</option>
+            <option value="reyna">レイナ</option>
+            <option value="killjoy">キルジョイ</option>
+            <option value="skye">スカイ</option>
+            <option value="yoru">ヨル</option>
+            <option value="astra">アストラ</option>
+            <option value="kayo">KAY/O</option>
+            <option value="chamber">チェンバー</option>
+            <option value="neon">ネオン</option>
+            <option value="fade">フェイド</option>
+        </select>
+    </p>
+    
+    <h3>マップ</h3>
+    <p>
+        <select id="map">
+            <option value="icebox">アイスボックス</option>
+            <option value="ascent">アセント</option>
+            <option value="split">スプリット</option>
+            <option value="bind">バインド</option>
+            <option value="fracture">フラクチャー</option>
+            <option value="breeze">ブリーズ</option>
+            <option value="haven">ヘイヴン</option>
+        </select>
+    </p>
+
+    <h3>マッチ結果</h3>
+    <form id="result">
+        <input type="radio" name="result" value="win">win
+        <input type="radio" name="result" value="lose">lose
+        <input type="radio" name="result" value="draw">draw
+    </form>
+    <p>
+        <input type="number" id="increase" value="increase">
+    </p>
+    <p>
+        <input type="number" id="kills" value="kills">キル
+        <input type="number" id="deaths" value="deaths">デス
+        <input type="number" id="assists" value="assists">アシスト
+    </p>
+    <br>
+    <p>
+        <!---<input type="button" name="back" value="前のマッチへ" onclick="history.back()">-->
+        <input type="button" name="next" value="次のマッチへ" onclick="getAllInfo();location.href='./regist.html'">
+        <input type="button" name="end" value="preview" onclick="showInfos()">
+    </p>
+</body>
+</html>
