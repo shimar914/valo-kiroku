@@ -1,4 +1,6 @@
 var infos = [];
+var wins = 0,loses = 0,draws = 0;
+var point;
 
 function getRadioChecked(id){
     var element = document.getElementById(id);
@@ -32,9 +34,55 @@ function getAllInfo(){
     info.deaths = document.getElementById('deaths').value;
     info.assists = document.getElementById('assists').value;
 
+    switch(info.result){
+        case "win":
+            wins++; break;
+        case "lose":
+            loses++; break;
+        case "draw":
+            draws++; break;
+    }
+
     console.log(info);
-    return info;
+    infos.push(info);
+    console.log(infos);
+    //return info;
 }
+
+function updateResults(result){
+    document.getElementById("wins").innerHTML = wins;
+    document.getElementById("loses").innerHTML = loses;
+    document.getElementById("draws").innerHTML = draws;
+}
+
+function uncheckRadio(id){
+    var e = document.getElementById(id);
+    for(var i=0;i<e.elements.length;i++){
+        e.elements[i].checked = false;
+    }
+} 
+
+function initDropdown(id){
+    var e = document.getElementById(id);
+    e.options[0].selected = true;
+}
+
+function clearNum(id){
+    var numForm = document.getElementById(id);
+    numForm.value = '';
+}
+
+function clearInputs(){
+    uncheckRadio("gamemode");
+    initDropdown("agent");
+    initDropdown("map");
+    uncheckRadio("result");
+    clearNum("increase");
+    clearNum("kills");
+    clearNum("deaths");
+    clearNum("assists");
+}
+
 
 function showInfos(){
     console.log(infos);

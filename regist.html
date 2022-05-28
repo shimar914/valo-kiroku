@@ -8,8 +8,9 @@
     <script src="./input.js"></script>
 </head>
 <body>
+    <h2><span id="wins">0</span> WIN <span id="loses">0</span> LOSE <span id="draws"> 0</span> DRAW</h2>
     <h3>ゲームモード</h3>
-    <form id="gamemode">
+    <form id="gamemode" name="gamemode">
         <input type="radio" name="gamemode" value="unrated">unrated
         <input type="radio" name="gamemode" value="competitive">competitive
     </form>
@@ -69,8 +70,8 @@
     <br>
     <p>
         <!---<input type="button" name="back" value="前のマッチへ" onclick="history.back()">-->
-        <input type="button" name="next" value="次のマッチへ" onclick="getAllInfo();location.href='./regist.html'">
-        <input type="button" name="end" value="preview" onclick="showInfos()">
+        <input type="button" name="next" value="次のマッチへ" onclick="getAllInfo();updateResults();clearInputs();">
+        <input type="button" name="end" value="preview" onclick="showInfos();">
     </p>
 </body>
 </html>
