@@ -5,11 +5,11 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
+    <script src="index.js"></script>
 </head>
 <body>
     <h1>VALO KIROKU</h1>
-    <select name="rank">
-        <option value="Radiant">レディアント</option>
+    <select id="rank">
         <option value="Immo3">イモータル3</option>
         <option value="Immo2">イモータル2</option>
         <option value="Immo1">イモータル1</option>
@@ -25,14 +25,14 @@
         <option value="Sil3">シルバー3</option>
         <option value="Sil2">シルバー2</option>
         <option value="Sil1">シルバー1</option>
-        <option value="Bronze3">ブロンズ3</option>
-        <option value="Bronze2">ブロンズ2</option>
-        <option value="Bronze1">ブロンズ1</option>
+        <option value="Bro3">ブロンズ3</option>
+        <option value="Bro2">ブロンズ2</option>
+        <option value="Broq1">ブロンズ1</option>
         <option value="Iron3">アイアン3</option>
         <option value="Iron2">アイアン2</option>
         <option value="Iron1">アイアン1</option>
     </select>
     <input type="number" id="point" max="99" min="0">RR
-    <input type="button" value="記録を始める！" onclick="location.href='./regist.html'">
+    <input type="button" value="記録を始める！" onclick="location.href='./regist.html?rank=' + document.getElementById('rank').value + '&point=' + document.getElementById('point').value">
 </body>
 </html>

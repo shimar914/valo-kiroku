@@ -7,8 +7,9 @@
     <title>Document</title>
     <script src="./input.js"></script>
 </head>
-<body>
+<body onload="getUrlQueries();">
     <h2><span id="wins">0</span> WIN <span id="loses">0</span> LOSE <span id="draws"> 0</span> DRAW</h2>
+    <h2>RANK:<span id="current_rank"></span>    <span id="current_RR">RR</span></h2>
     <h3>ゲームモード</h3>
     <form id="gamemode" name="gamemode">
         <input type="radio" name="gamemode" value="unrated">unrated
@@ -70,7 +71,7 @@
     <br>
     <p>
         <!---<input type="button" name="back" value="前のマッチへ" onclick="history.back()">-->
-        <input type="button" name="next" value="次のマッチへ" onclick="getAllInfo();updateResults();clearInputs();">
+        <input type="button" name="next" value="次のマッチへ" onclick="processToNextMatch()">
         <input type="button" name="end" value="preview" onclick="showInfos();">
     </p>
 </body>

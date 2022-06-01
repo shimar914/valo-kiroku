@@ -1,6 +1,30 @@
+var rank;
+var info = {};
 var infos = [];
 var wins = 0,loses = 0,draws = 0;
 var point;
+const ranks = [
+    "Iron1","Iron2","Iron3","Bro1","Bro2","Bro3","Sil1","Sil2","Sil3","Gold1","Gold2","Gold3","Plat1","Plat2","Plat3","Dia1","Dia2","Dia3","Immo1","Immo2","Immo3"
+]
+
+function getUrlQueries() {
+    var queryStr = window.location.search.slice(1);
+    queries = {};
+
+    if (!queryStr) {
+        return queries;
+    }
+
+    queryStr.split('&').forEach(function(queryStr) {
+        var queryArr = queryStr.split('=');
+        queries[queryArr[0]] = queryArr[1];
+    });
+
+    info.currentRank = queries.rank;
+    info.currentPoint = queries.point - 0;
+    console.log(info.currentPoint);
+}
+
 
 function getRadioChecked(id){
     var element = document.getElementById(id);
@@ -23,13 +47,11 @@ function getRadioChecked(id){
 }
 
 function getAllInfo(){
-    var info = {};
-
     info.gamemode = getRadioChecked('gamemode');
     info.agent = document.getElementById('agent').value;
     info.map = document.getElementById('map').value;
     info.result = getRadioChecked('result');
-    info.increase = document.getElementById('increase').value;
+    info.increase = document.getElementById('increase').value - 0;
     info.kills = document.getElementById('kills').value;
     info.deaths = document.getElementById('deaths').value;
     info.assists = document.getElementById('assists').value;
@@ -43,10 +65,37 @@ function getAllInfo(){
             draws++; break;
     }
 
-    console.log(info);
-    infos.push(info);
-    console.log(infos);
+
     //return info;
+}
+
+function updateRanks(){
+    var is0pt = 0;
+    if(info.currentPoint === 0) is0pt = 1;
+    info.currentPoint = info.currentPoint + info.increase;
+    if(ranks.indexOf(info.currentRank) > 18){ //Immo2以上
+        if(info.currentPoint >= 400) info.currentRank = "Radiant";
+        else if(info.currentPoint >= 200) info.currentRank = "Immo3";
+        else if(info.currentPoint >= 80) info.currentRank = "Immo2";
+        else info.currentRank = "Immo1";
+    }else{ //Immo1以下
+        console.log(info.currentPoint);
+        if(info.currentPoint >= 80 && info.currentRank === "Immo1"){ //Immo1で80RR以上になった場合
+            info.currentRank = ranks[ranks.indexOf(info.currentRank)+1];
+        }
+        else if(info.currentPoint >= 100){ //Dia3以下で100RR以上になった場合
+            info.currentRank = ranks[ranks.indexOf(info.currentRank)+1];
+            info.currentPoint = 10;
+        }else{ //ランクアップしなかったとき
+            if(is0pt && info.increase < 0){ //RRが0の状態で負けたとき
+                info.currentRank = ranks[ranks.indexOf(info.currentRank)-1];
+                info.currentPoint = 100 + info.increase;
+            }else if(info.currentPoint < 0){ //RRが0でない状態から負けてRRがマイナスになったとき
+                info.currentPoint = 0;
+            }
+        }
+
+    }
 }
 
 function updateResults(result){
@@ -85,5 +134,15 @@ function clearInputs(){
 
 
 function showInfos(){
+    console.log(infos);
+}
+
+function processToNextMatch(){
+    getAllInfo();
+    updateRanks();
+    updateResults();
+    clearInputs();
+    console.log(info);
+    infos.push(info);
     console.log(infos);
 }
