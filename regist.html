@@ -6,14 +6,15 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
     <script src="./input.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/canvasjs/1.7.0/canvasjs.min.js"></script>
 </head>
-<body onload="getUrlQueries();">
-    <h2><span id="wins">0</span> WIN <span id="loses">0</span> LOSE <span id="draws"> 0</span> DRAW</h2>
-    <h2>RANK:<span id="current_rank"></span>    <span id="current_RR">RR</span></h2>
+<body onload="getUrlQueries();displayRanks();drawGraph();">
+    <h2><span id="wins">0</span> WIN <span id="loses">0</span> LOSE <span id="draws"> 0</span> DRAW (<span id="winper">0</span>%win)</h2>
+    <h2>RANK:<span id="current_rank"></span>    <span id="current_RR">RR</span> RR</h2>
     <h3>ゲームモード</h3>
     <form id="gamemode" name="gamemode">
-        <input type="radio" name="gamemode" value="unrated">unrated
-        <input type="radio" name="gamemode" value="competitive">competitive
+        <input type="radio" name="gamemode" value="unrated">アンレート
+        <input type="radio" name="gamemode" value="competitive" checked="checked">コンペティティブ
     </form>
 
     <h3>使用キャラ</h3>
@@ -74,5 +75,8 @@
         <input type="button" name="next" value="次のマッチへ" onclick="processToNextMatch()">
         <input type="button" name="end" value="preview" onclick="showInfos();">
     </p>
+    <h4>合計スタッツ:<span id="all_kills">0</span>/<span id="all_deaths">0</span>/<span id="all_assists">0</span></h4>
+    <h4>KDA:<span id="all_KDA">0</span></h4>
+    <div id="graph"></div>
 </body>
 </html>
